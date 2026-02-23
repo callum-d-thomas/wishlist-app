@@ -1,0 +1,128 @@
+@WishlistApi_HostAddress = https://localhost:7290
+@aliceToken = your-token-here-from-login-response
+@bobToken = your-token-here-from-login-response
+
+### Register a new user (Alice)
+POST {{WishlistApi_HostAddress}}/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "alice@example.com",
+  "password": "Password123",
+  "firstName": "Alice",
+  "lastName": "Johnson"
+}
+
+### Register a new user (Bob)
+POST {{WishlistApi_HostAddress}}/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "bob@example.com",
+  "password": "Password123",
+  "firstName": "Bob",
+  "lastName": "Smith"
+}
+
+### Login user
+POST {{WishlistApi_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "alice@example.com",
+  "password": "Password123"
+}
+
+### Get authenticated user profile
+GET {{WishlistApi_HostAddress}}/api/auth/profile
+Authorization: Bearer {{aliceToken}}
+
+###
+GET {{WishlistApi_HostAddress}}/api/wishlists/owner/00000000-0000-0000-0000-000000000000
+Accept: application/json
+
+### Get wishlist by ID
+GET {{WishlistApi_HostAddress}}/api/wishlists/00000000-0000-0000-0000-000000000000
+Accept: application/json
+
+### Create a wishlist
+POST {{WishlistApi_HostAddress}}/api/wishlists?ownerId=00000000-0000-0000-0000-000000000000
+Content-Type: application/json
+
+{
+  "title": "My Birthday Wishlist",
+  "description": "Things I'd love for my birthday!",
+  "occasion": "Birthday",
+  "eventDate": "2026-06-15"
+}
+
+### Update a wishlist
+PUT {{WishlistApi_HostAddress}}/api/wishlists/00000000-0000-0000-0000-000000000000
+Content-Type: application/json
+
+{
+  "title": "Updated Birthday Wishlist",
+  "description": "Updated things I'd love for my birthday!",
+  "occasion": "Birthday",
+  "eventDate": "2026-06-15"
+}
+
+### Delete a wishlist
+DELETE {{WishlistApi_HostAddress}}/api/wishlists/00000000-0000-0000-0000-000000000000
+
+###
+
+### Get all items in a wishlist
+GET {{WishlistApi_HostAddress}}/api/wishlists/00000000-0000-0000-0000-000000000000/items
+Accept: application/json
+
+### Get a specific item
+GET {{WishlistApi_HostAddress}}/api/wishlists/00000000-0000-0000-0000-000000000000/items/00000000-0000-0000-0000-000000000001
+Accept: application/json
+
+### Add an item to a wishlist
+POST {{WishlistApi_HostAddress}}/api/wishlists/00000000-0000-0000-0000-000000000000/items
+Content-Type: application/json
+
+{
+  "name": "Book - Clean Code",
+  "description": "A Handbook of Agile Software Craftsmanship",
+  "url": "https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882",
+  "imageUrl": null,
+  "price": 39.99,
+  "priority": 1
+}
+
+### Update an item
+PUT {{WishlistApi_HostAddress}}/api/wishlists/00000000-0000-0000-0000-000000000000/items/00000000-0000-0000-0000-000000000001
+Content-Type: application/json
+
+{
+  "name": "Book - Clean Code (Updated)",
+  "description": "A Handbook of Agile Software Craftsmanship",
+  "url": "https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882",
+  "imageUrl": null,
+  "price": 35.99,
+  "priority": 2
+}
+
+### Delete an item
+DELETE {{WishlistApi_HostAddress}}/api/wishlists/00000000-0000-0000-0000-000000000000/items/00000000-0000-0000-0000-000000000001
+
+### Claim an item
+POST {{WishlistApi_HostAddress}}/api/wishlists/00000000-0000-0000-0000-000000000000/items/00000000-0000-0000-0000-000000000001/claim
+Content-Type: application/json
+
+{
+  "userId": "00000000-0000-0000-0000-000000000002"
+}
+
+### Unclaim an item
+POST {{WishlistApi_HostAddress}}/api/wishlists/00000000-0000-0000-0000-000000000000/items/00000000-0000-0000-0000-000000000001/unclaim
+Content-Type: application/json
+
+{
+  "userId": "00000000-0000-0000-0000-000000000002"
+}
+
+###

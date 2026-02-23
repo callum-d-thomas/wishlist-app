@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="WishlistApi.Core/WishlistApi.Core.csproj" />
+  <Project Path="WishlistApi.Data/WishlistApi.Data.csproj" />
+  <Project Path="WishlistApi.Tests/WishlistApi.Tests.csproj" />
+  <Project Path="WishlistApi/WishlistApi.csproj" />
+</Solution>
